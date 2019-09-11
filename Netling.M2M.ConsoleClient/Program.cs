@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using CommandLine.Options;
@@ -37,7 +38,7 @@ namespace Netling.M2M.ConsoleClient
         private static async Task Run(Uri uri, int threads, TimeSpan duration)
         {
             WorkerResult result;
-            var worker = new Worker(new BulkHttpClientWorkerJob(uri));
+            var worker = new Worker(new BulkHttpClientWorkerJob(uri, IPAddress.Parse("10.0.0.1").Range(100)));
 
             result = await worker.Run(uri.ToString(), threads, duration, new CancellationToken());
 
