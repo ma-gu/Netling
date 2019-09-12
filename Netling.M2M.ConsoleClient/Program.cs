@@ -14,14 +14,14 @@ namespace Netling.M2M.ConsoleClient
 {
     class Program
     {
-        const string Uri = @"http://localhost:36004/";
+        static readonly string Uri = @"http://localhost:36004/ibis2";
 
         static void Main(string[] args)
         {
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en");
 
-            RunWithDuration(new Uri(Uri), 8, TimeSpan.FromSeconds(60)).Wait();
+            RunWithDuration(Uri, 8, TimeSpan.FromSeconds(15)).Wait();
         }
 
         private static void ShowHelp()
@@ -29,13 +29,13 @@ namespace Netling.M2M.ConsoleClient
             Console.WriteLine(HelpString);
         }
 
-        private static Task RunWithDuration(Uri uri, int threads, TimeSpan duration)
+        private static Task RunWithDuration(string uri, int threads, TimeSpan duration)
         {
             Console.WriteLine(StartRunWithDurationString, duration.TotalSeconds, uri, threads);
             return Run(uri, threads, duration);
         }
 
-        private static async Task Run(Uri uri, int threads, TimeSpan duration)
+        private static async Task Run(string uri, int threads, TimeSpan duration)
         {
             WorkerResult result;
             var worker = new Worker(new BulkHttpClientWorkerJob(uri, IPAddress.Parse("10.0.0.1").Range(100)));
