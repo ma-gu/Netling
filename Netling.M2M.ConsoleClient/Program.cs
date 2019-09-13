@@ -4,11 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using CommandLine.Options;
 using Netling.Core;
 using Netling.Core.BulkHttpClientWorker;
 using Netling.Core.Models;
-using Netling.Core.SocketWorker;
 
 namespace Netling.M2M.ConsoleClient
 {
